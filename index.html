@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Formular EmailJS</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("n6JyTnYNziFdGNWGT"); // înlocuiește cu cheia ta
+    })();
+
+    function trimiteEmail(event) {
+      event.preventDefault(); // nu se dă refresh la pagină
+
+      emailjs.sendForm('service_ncc5f0m', 'template_6ug4b2m', '#formular')
+        .then(function() {
+          alert("Email trimis cu succes!");
+        }, function(error) {
+          alert("Eroare la trimitere: " + JSON.stringify(error));
+        });
+    }
+  </script>
+  <style>
+    body {
+      background-color: white;
+      font-family: Arial, sans-serif;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h2>Bună! Ce mai faceți?</h2>
+  <form id="formular" onsubmit="trimiteEmail(event)">
+    <label for="raspuns">Răspuns:</label><br>
+    <input type="text" id="raspuns" name="raspuns" placeholder="Scrie răspunsul aici"><br><br>
+    <input type="submit" value="Trimite">
+  </form>
+</body>
+</html>
